@@ -13,7 +13,7 @@ async function main(){
   const id2 = await createID();
 }
 ```
-## 多进程使用, 使用环境变量确认 workerID, dataCenterID
+## 多进程使用, 使用环境变量配置 workerID, dataCenterID
 ```ts
 import snowflake from "snowflake.js";
 const workerId = parseInt(process.env.WORKER_ID || "0", 10)
