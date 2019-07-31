@@ -1,0 +1,22 @@
+{
+  "name": "snowflake.js",
+  "version": "1.0.0",
+  "main": "lib/snowflake.js",
+  "license": "MIT",
+  "dependencies": {
+    "long": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "@types/long": "^4.0.0",
+    "jest": "^24.8.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "test": "jest",
+    "prebuild": "rimraf dist",
+    "build": "tsc"
+  }
+}
