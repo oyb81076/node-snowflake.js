@@ -19,7 +19,7 @@ export default function snowflake({
   twepoch = 1288834974657,
   workerIdBits = 5,
   dataCenterIdBits = 5,
-}: IConfig = {}): () => Promise<string> {
+}: IConfig = {}): () => string {
   const sequenceBits = 22 - workerIdBits - dataCenterIdBits;
   validate(dataCenterIdBits, workerIdBits, sequenceBits, dataCenterId, workerId);
   return makeNextID(
@@ -61,20 +61,20 @@ function makeNextID(
   twepoch: number,
   dataCenterId: number,
   workerId: number,
-): () => Promise<string> {
+): () => string {
   const timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
   const sequenceMask = -1 ^ (-1 << sequenceBits);
   const dataCenterWorkerValue = dataCenterWorker(workerIdBits, sequenceBits, dataCenterId, workerId);
   let sequence = 0;
   let lastTimestamp = -1;
 
-  return async function nextID() {
+  return function nextID() {
     let timestamp = Date.now();
     if (lastTimestamp === timestamp) {
       sequence = (sequence + 1) & sequenceMask;
       if (sequence === 0) {
         do {
-          timestamp = await sleep();
+          timestamp = Date.now();
         } while (timestamp !== lastTimestamp);
       }
     } else {
@@ -96,11 +96,11 @@ function makeNextID(
   };
 }
 
-async function sleep(): Promise<number> {
-  return new Promise((r) => {
-    setTimeout(() => r(Date.now()), 0);
-  });
-}
+// async function sleep(): Promise<number> {
+//   return new Promise((r) => {
+//     setTimeout(() => r(Date.now()), 0);
+//   });
+// }
 
 function dataCenterWorker(
   workerIdBits: number,

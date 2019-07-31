@@ -8,9 +8,9 @@ snowflake 现实中很少使用到分布式,
 import snowflake from "snowflake.js"
 export const createID = snowflake();
 async function main(){
-  const id0 = await createID();
-  const id1 = await createID();
-  const id2 = await createID();
+  const id0 = createID();
+  const id1 = createID();
+  const id2 = createID();
 }
 ```
 ## 多进程使用, 使用环境变量配置 workerID, dataCenterID
