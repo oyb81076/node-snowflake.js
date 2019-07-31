@@ -2,10 +2,19 @@
   "name": "snowflake.js",
   "version": "1.0.0",
   "main": "lib/snowflake.js",
+  "types": "src/snowflake.ts",
   "license": "MIT",
+  "keywords": [
+    "snowflake"
+  ],
   "dependencies": {
     "long": "^4.0.0"
   },
+  "files": [
+    "dist",
+    "src",
+    "package.json"
+  ],
   "devDependencies": {
     "@types/jest": "^24.0.16",
     "@types/long": "^4.0.0",

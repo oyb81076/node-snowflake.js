@@ -1,5 +1,9 @@
-import { fromValue } from "long";
+/**
+ * most copy form
+ * https://github.com/Welogix-Tech/node-snowflake/blob/master/lib/snowflake.js
+ */
 
+import { fromValue } from "long";
 interface IConfig {
   workerIdBits?: number;
   workerId?: number;
