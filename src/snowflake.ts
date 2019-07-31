@@ -19,7 +19,7 @@ export default function snowflake({
   twepoch = 1288834974657,
   workerIdBits = 5,
   dataCenterIdBits = 5,
-}: IConfig = {}) {
+}: IConfig = {}): () => Promise<string> {
   const sequenceBits = 22 - workerIdBits - dataCenterIdBits;
   validate(dataCenterIdBits, workerIdBits, sequenceBits, dataCenterId, workerId);
   return makeNextID(
