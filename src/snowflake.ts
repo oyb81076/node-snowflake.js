@@ -12,7 +12,6 @@ interface IConfig {
   dataCenterIdBits?: number;
   sequenceBits?: number;
 }
-// nodejs的性能差到无法在1ms内生成4000个
 export default function snowflake({
   workerId = 0,
   dataCenterId = 0,
@@ -96,12 +95,6 @@ function makeNextID(
   };
 }
 
-// async function sleep(): Promise<number> {
-//   return new Promise((r) => {
-//     setTimeout(() => r(Date.now()), 0);
-//   });
-// }
-
 function dataCenterWorker(
   workerIdBits: number,
   sequenceBits: number,
@@ -125,7 +118,6 @@ function format(
 ) {
   const leftValue = timestamp - twepoch;
   const rightValue = dataCenterWorkerValue + sequence;
-  // js的位运算不如 + - 运算, 所以我把位运算都改成了+ - 运算了
   const value = fromValue(leftValue).shiftLeft(timestampLeftShift).add(rightValue);
   return value.toString(10);
 }

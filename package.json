@@ -1,6 +1,6 @@
 {
   "name": "node-snowflake.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/snowflake.js",
   "license": "MIT",
   "repository": "git://github.com/oyb81076/snowflake.js",
@@ -13,7 +13,9 @@
   "files": [
     "dist",
     "src",
-    "package.json"
+    "script",
+    "package.json",
+    "README.md"
   ],
   "devDependencies": {
     "@types/jest": "^24.0.16",
@@ -28,6 +30,7 @@
     "test": "jest",
     "prebuild": "rimraf dist",
     "lint": "tsc --noEmit && tslint -p .",
-    "build": "tsc"
+    "build": "tsc",
+    "test-speed": "node script/test-speed.js"
   }
 }
