@@ -1,9 +1,9 @@
 {
   "name": "node-snowflake.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "dist/snowflake.js",
   "license": "MIT",
-  "repository": "git://github.com/oyb81076/snowflake.js",
+  "repository": "git://github.com/oyb81076/node-snowflake.js",
   "keywords": [
     "snowflake"
   ],
