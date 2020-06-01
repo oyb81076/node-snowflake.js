@@ -1,15 +1,13 @@
 {
   "name": "node-snowflake.js",
-  "version": "1.0.5",
+  "version": "2.0.0",
   "main": "dist/snowflake.js",
   "license": "MIT",
   "repository": "git://github.com/oyb81076/node-snowflake.js",
   "keywords": [
     "snowflake"
   ],
-  "dependencies": {
-    "long": "^4.0.0"
-  },
+  "dependencies": {},
   "files": [
     "dist",
     "src",
@@ -20,11 +18,11 @@
   "devDependencies": {
     "@types/jest": "^24.0.16",
     "@types/long": "^4.0.0",
-    "jest": "^24.8.0",
+    "jest": "^26.0.1",
     "rimraf": "^2.6.3",
-    "ts-jest": "^24.0.2",
+    "ts-jest": "^26.1.0",
     "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.9.3"
   },
   "scripts": {
     "test": "jest",

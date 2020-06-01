@@ -4,6 +4,7 @@ snowflake 现实中很少使用到分布式,
 一个小型应用压根不会有部署那么多进程,
 所以完全可以讲snowflake作为mysql 单机 ID 生成器
 
+
 # Install
 ```
 yarn add node-snowflake.js
@@ -32,7 +33,7 @@ export const createID = snowflake({ workerId, dataCenterId });
 
 ## 速度
 受限于操作系统和nodejs性能, 无法做到最大速度 4096/ms 个
-在 iMac 上平均速度为 1050/ms
+在 iMac 上平均速度为 1400/ms
 运行测试的方式
 ```
 yarn build;

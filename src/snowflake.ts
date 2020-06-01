@@ -1,9 +1,9 @@
 /**
+ * BigInt Version
  * most copy form
  * https://github.com/Welogix-Tech/node-snowflake/blob/master/lib/snowflake.js
  */
 
-import { fromValue } from "long";
 interface IConfig {
   workerIdBits?: number;
   workerId?: number;
@@ -53,6 +53,9 @@ function validate(
   }
 }
 
+const ZERO = BigInt(0);
+const ONE = BigInt(1);
+
 function makeNextID(
   dataCenterIdBits: number,
   workerIdBits: number,
@@ -61,23 +64,24 @@ function makeNextID(
   dataCenterId: number,
   workerId: number,
 ): () => string {
-  const timestampLeftShift = sequenceBits + workerIdBits + dataCenterIdBits;
-  const sequenceMask = -1 ^ (-1 << sequenceBits);
+  const timestampLeftShift = BigInt(sequenceBits + workerIdBits + dataCenterIdBits);
+  const sequenceMask = BigInt(-1 ^ (-1 << sequenceBits));
   const dataCenterWorkerValue = dataCenterWorker(workerIdBits, sequenceBits, dataCenterId, workerId);
-  let sequence = 0;
-  let lastTimestamp = -1;
+  const twepochBigInt = BigInt(twepoch);
+  let sequence = ZERO;
+  let lastTimestamp = ZERO;
 
   return function nextID() {
-    let timestamp = Date.now();
+    let timestamp = BigInt(Date.now());
     if (lastTimestamp === timestamp) {
-      sequence = (sequence + 1) & sequenceMask;
-      if (sequence === 0) {
+      sequence = (sequence + ONE) & sequenceMask;
+      if (sequence === ZERO) {
         do {
-          timestamp = Date.now();
+          timestamp = BigInt(Date.now());
         } while (timestamp !== lastTimestamp);
       }
     } else {
-      sequence = 0;
+      sequence = ZERO;
     }
     if (timestamp < lastTimestamp) {
       throw new Error("Clock moved backwards. Refusing to generate id for " +
@@ -87,8 +91,8 @@ function makeNextID(
     lastTimestamp = timestamp;
     return format(
       timestampLeftShift,
-      twepoch,
-      timestamp,
+      twepochBigInt,
+      BigInt(timestamp),
       dataCenterWorkerValue,
       sequence,
     );
@@ -106,18 +110,16 @@ function dataCenterWorker(
   const dataCenterValue = dataCenterId << dataCenterIdShift;
   const workerValue = workerId << workerIdShift;
   const dataCenterWorkerValue = dataCenterValue + workerValue;
-  return dataCenterWorkerValue;
+  return BigInt(dataCenterWorkerValue);
 }
 
 function format(
-  timestampLeftShift: number,
-  twepoch: number,
-  timestamp: number,
-  dataCenterWorkerValue: number,
-  sequence: number,
-) {
-  const leftValue = timestamp - twepoch;
-  const rightValue = dataCenterWorkerValue + sequence;
-  const value = fromValue(leftValue).shiftLeft(timestampLeftShift).add(rightValue);
-  return value.toString(10);
+  timestampLeftShift: bigint,
+  twepoch: bigint,
+  timestamp: bigint,
+  dataCenterWorkerValue: bigint,
+  sequence: bigint,
+): string {
+  const value = (timestamp - twepoch) << timestampLeftShift | dataCenterWorkerValue | sequence;
+  return value.toString();
 }
