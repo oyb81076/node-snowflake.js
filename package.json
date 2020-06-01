@@ -16,12 +16,11 @@
     "README.md"
   ],
   "devDependencies": {
-    "@types/jest": "^24.0.16",
-    "@types/long": "^4.0.0",
+    "@types/jest": "^25.2.3",
     "jest": "^26.0.1",
-    "rimraf": "^2.6.3",
+    "rimraf": "^3.0.2",
     "ts-jest": "^26.1.0",
-    "tslint": "^5.18.0",
+    "tslint": "^6.1.2",
     "typescript": "^3.9.3"
   },
   "scripts": {

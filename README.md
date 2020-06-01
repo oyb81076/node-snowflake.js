@@ -31,7 +31,7 @@ const dataCenterId = parseInt(process.env.DATA_CENTER_ID || "0", 10)
 export const createID = snowflake({ workerId, dataCenterId });
 ```
 
-## 速度测试
+## Speed
 受限于操作系统和nodejs性能, 无法做到最大速度 4096/ms 个
 在 iMac 上平均速度为 1400/ms
 运行测试的方式
