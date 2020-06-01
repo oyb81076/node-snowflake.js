@@ -15,6 +15,7 @@ interface IConfig {
 export default function snowflake({
   workerId = 0,
   dataCenterId = 0,
+  // 2010-11-04T01:42:54.657Z
   twepoch = 1288834974657,
   workerIdBits = 5,
   dataCenterIdBits = 5,

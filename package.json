@@ -1,6 +1,9 @@
 {
   "name": "node-snowflake.js",
-  "version": "2.0.0",
+  "version": "2.0.1",
+  "engines": {
+    "node": ">= 10.14.2"
+  },
   "main": "dist/snowflake.js",
   "license": "MIT",
   "repository": "git://github.com/oyb81076/node-snowflake.js",
